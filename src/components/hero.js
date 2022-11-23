@@ -11,6 +11,8 @@ const Hero = ({image, title, content }) => (
       {content && (
         <div className={styles.content}>{renderRichText(content)}</div>
       )}
+      <a href="https://twitter.com/axshaw?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @axshaw</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+       <br /><br /><script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> 
     </div>
   </div>
 )
