@@ -3,7 +3,7 @@
   display: flex;
   margin: 0 auto;
   max-width: var(--size-max-width);
-  min-height: 200px;
+  min-height: 100px;
   padding: 0 0 var(--size-gutter);
   position: relative;
 }
@@ -14,7 +14,7 @@
     the viewport width
   */
   height: 61.8vh;
-  max-height: 560px;
+  max-height: 200px;
   width: 100%;
 }
 
@@ -22,6 +22,7 @@
   background: var(--background);
   left: 0;
   max-width: 40rem;
+  opacity: 0.7;
   width: 85%;
   padding: var(--space-2xl) var(--size-gutter) 0;
   position: absolute;
@@ -43,29 +44,28 @@
 
 @media (min-width: 480px) {
   .details {
-    padding-top: var(--space-3xl);
+    padding-top: 0;
   }
 }
 
 @media (min-width: 768px) {
   .hero {
-    padding-top: var(--size-gutter);
+    padding-top: 0;
   }
 
   .details {
     max-width: 44rem;
-    padding: var(--space-3xl) var(--size-gutter) 0;
+    padding: var(--space-2xl) var(--size-gutter) 0;
   }
 }
 
 @media (min-width: 1024px) {
   .image {
     margin-left: auto;
-    width: 85%;
   }
 
   .details {
-    left: var(--size-gutter);
-    padding: var(--space-3xl) var(--size-gutter) 0 0;
+    
+    padding: var(--space-2xl) var(--size-gutter) 0;
   }
 }
