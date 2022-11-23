@@ -3,9 +3,10 @@
   display: flex;
   margin: 0 auto;
   max-width: var(--size-max-width);
-  min-height: 100px;
+  min-height: 150px;
   padding: 0 0 var(--size-gutter);
   position: relative;
+  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);  
 }
 
 .image {
@@ -14,18 +15,19 @@
     the viewport width
   */
   height: 61.8vh;
-  max-height: 200px;
+  max-height: 300px;
   width: 100%;
 }
 
 .details {
-  background: var(--background);
-  left: 0;
+  color: white;
+  margin: 0 auto;
   max-width: 40rem;
-  opacity: 0.7;
+  opacity: 1;
   width: 85%;
   padding: var(--space-2xl) var(--size-gutter) 0;
-  position: absolute;
+  text-align: center;
+
 }
 
 .title {
