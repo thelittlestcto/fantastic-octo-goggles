@@ -31,9 +31,10 @@
 }
 
 .title {
+  padding-top: 5px;
   letter-spacing: -0.012em;
   font-size: var(--text-title);
-  font-weight: var(--extrabold);
+  font-weight: var(--bold);
   line-height: var(--solid);
   margin: 0 0 var(--space-xl);
 }

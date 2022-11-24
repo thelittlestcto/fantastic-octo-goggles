@@ -5,6 +5,7 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
+import ArticleHighlight from '../components/article-highlight'
 
 class RootIndex extends React.Component {
   render() {
@@ -17,7 +18,8 @@ class RootIndex extends React.Component {
           image={author.heroImage.gatsbyImage}
           title={author.name}
           content={author.shortBio}
-        />
+        /><br />
+       <ArticleHighlight post={posts[0]} />pants
        <ArticlePreview posts={posts} />
       </Layout>
     )
