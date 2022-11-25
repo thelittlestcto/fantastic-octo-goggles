@@ -53,12 +53,12 @@
   /* tokens */
   /* colors */
   --primary: #4a90e2;
-  --background: var(--black);
+  --background: var(--white);
   --border: var(--black-fade-5);
 
   /* text */
   /* color */
-  --text-color: var(--white);
+  --text-color: var(--black);
   /* size */
   --text-lead: var(--text-lg);
   --text-prose: var(--text-md);

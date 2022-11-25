@@ -7,6 +7,31 @@
   grid-gap: var(--space-3xl);
 }
 
+.article-list > *:first-child {
+  grid-column: 1/-2;
+}
+
+.details {
+  color: white;
+  margin: 0 auto;
+  opacity: 1;
+  text-align: left;
+  height:100%;
+  position:relative;
+  min-height:310px;
+}
+
+.subdetails {
+  color:white;
+  position:absolute;
+  bottom:0;
+  left:0;
+  font-size: var(--text-sm);
+  background:rgba(0,0,0,.5);
+  text-align:left;
+  padding:3px;
+}
+
 .title {
   display: inline-block;
   font-size: var(--text-lg);
