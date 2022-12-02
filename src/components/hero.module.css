@@ -1,8 +1,6 @@
 .hero {
   align-items: flex-end;
   display: flex;
-  margin: 0 auto;
-  max-width: var(--size-max-width);
   min-height: 150px;
   padding: 0 0 var(--size-gutter);
   position: relative;

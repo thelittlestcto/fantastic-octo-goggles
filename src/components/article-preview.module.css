@@ -23,7 +23,7 @@
 
 .subdetails {
   color:white;
-  position:absolute;
+  /* position:absolute; use this if you want to float the article summary */
   bottom:0;
   left:0;
   font-size: var(--text-sm);

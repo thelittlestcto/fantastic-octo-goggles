@@ -6,7 +6,6 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 import { BLOCKS } from '@contentful/rich-text-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import readingTime from 'reading-time'
-
 import Seo from '../components/seo'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
@@ -23,8 +22,9 @@ class BlogPostTemplate extends React.Component {
     )
     const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
     const { minutes: timeToRead } = readingTime(plainTextBody)
-    
+
     const options = {
+      
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const { gatsbyImage, description } = node.data.target
@@ -112,7 +112,15 @@ export const pageQuery = graphql`
       }
       body {
         raw
-        
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            gatsbyImage(layout: CONSTRAINED, width: 1200, placeholder: BLURRED)
+            __typename
+          }
+        }
       }
       tags
       description {
