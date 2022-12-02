@@ -1,0 +1,72 @@
+.hero {
+  align-items: flex-end;
+  display: flex;
+  min-height: 150px;
+  padding: 0 0 var(--size-gutter);
+  position: relative;
+  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);  
+}
+
+.image {
+  /*
+    Ensure golden ratio for the hero size while limiting it to some extend to
+    the viewport width
+  */
+  height: 61.8vh;
+  max-height: 300px;
+  width: 100%;
+}
+
+.details {
+  color: white;
+  margin: 0 auto;
+  max-width: 40rem;
+  opacity: 1;
+  width: 85%;
+  padding: var(--space-2xl) var(--size-gutter) 0;
+  text-align: center;
+
+}
+
+.title {
+  padding-top: 5px;
+  letter-spacing: -0.012em;
+  font-size: var(--text-title);
+  font-weight: var(--bold);
+  line-height: var(--solid);
+  margin: 0 0 var(--space-xl);
+}
+
+.content {
+  font-size: var(--text-lead);
+  font-weight: var(--semibold);
+  margin: 0;
+}
+
+@media (min-width: 480px) {
+  .details {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 0;
+  }
+
+  .details {
+    max-width: 44rem;
+    padding: var(--space-2xl) var(--size-gutter) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .image {
+    margin-left: auto;
+  }
+
+  .details {
+    
+    padding: var(--space-2xl) var(--size-gutter) 0;
+  }
+}
