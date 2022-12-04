@@ -16,7 +16,7 @@ const PersonPreview = ({ people }) => {
         {people.map((person) => {
           return (
             <li key={person.name}>
-              <GatsbyImage alt="" image={person.image.gatsbyImage} />
+              <GatsbyImage alt="" image={person.heroImage.gatsbyImage} />
               <h1>{person.name}</h1>
               <h2>{person.title}</h2>
               <h3>{person.twitter}</h3>

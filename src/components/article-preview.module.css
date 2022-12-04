@@ -12,7 +12,7 @@
 }
 
 .details {
-  color: white;
+  color: var(--text-color);
   margin: 0 auto;
   opacity: 1;
   text-align: left;
@@ -22,12 +22,12 @@
 }
 
 .subdetails {
-  color:white;
+  color:var(--text-color);
   /* position:absolute; use this if you want to float the article summary */
   bottom:0;
   left:0;
   font-size: var(--text-sm);
-  background:rgba(0,0,0,.5);
+  
   text-align:left;
   padding:3px;
 }

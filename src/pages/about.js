@@ -10,11 +10,15 @@ import PersonPreview from '../components/person-preview'
 class PersonIndex extends React.Component {
   render() {
     const people = get(this, 'props.data.allContentfulPerson.nodes')
-
+    const [author] = get(this, 'props.data.allContentfulPerson.nodes')
     return (
       <Layout location={this.props.location}>
         <Seo title="About" />
-        <Hero title="About" />
+        <Hero
+          image={author.heroImage.gatsbyImage}
+          title={author.name}
+          content={author.shortBio}
+        />
         <PersonPreview people={people} />
       </Layout>
     )
@@ -39,8 +43,11 @@ export const pageQuery = graphql`
           revision
         }
         title
-        image {
-          gatsbyImage
+        heroImage: image {
+          gatsbyImage(
+            placeholder: BLURRED
+            width: 180
+          )
         }
       }
     }
