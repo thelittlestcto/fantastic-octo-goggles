@@ -39,6 +39,7 @@
   --heavy: 900;
 
   /* font-size */
+  --text-xxs: 8pt;
   --text-xs: 12px;
   --text-sm: 14px;
   --text-md: 16px;

@@ -27,7 +27,7 @@
 }
 
 .footsie {
-  
+  font-size: var(--text-xxs);
 }
 
 .navigation {

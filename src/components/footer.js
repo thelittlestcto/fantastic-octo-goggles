@@ -29,7 +29,14 @@ const Footer = () => (
     </ul>
   </nav>
   <div className={styles.footsie}>
-    hello worlds
+    Resources:
+  <ul className={styles.navigation}>
+    <li className={styles.navigationItem}>  
+    <Link to="/agile-principles/" activeClassName="active">
+            agile principles
+    </Link>
+    </li>
+  </ul>
   </div>
   </Container>
 )
