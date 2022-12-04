@@ -23,29 +23,32 @@
   max-width: var(--size-max-width);
   align-items: center;
   margin: 0 auto;
-  padding: var(--space-2xl) var(--size-gutter);
+  padding: var(--space-sm) var(--size-gutter);
+  
 }
 
 .footsie {
   font-size: var(--text-xxs);
+  padding: var(--space-sm) 0;
 }
 
 .navigation {
-  display: flex;
+  display: table;
+  width: 100%;
   list-style: none;
   margin: 0;
   gap: var(--space-xl);
 }
 
 .navigationItem {
-  display: inline-flex;
+  display: table-cell;
   align-items: center;
-  flex-direction: row;
 }
 
 .navigationItem a {
+  display:block;
   border-bottom: 1.5px solid transparent;
-  color: currentColor;
+  color: var(--background);
   text-decoration: none;
 }
 

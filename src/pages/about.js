@@ -34,6 +34,9 @@ export const pageQuery = graphql`
         shortBio {
           raw
         }
+        longBio {
+          raw
+        }
         twitter
         name
         company

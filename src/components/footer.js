@@ -10,27 +10,21 @@ const Footer = () => (
     <Link to="/" className={styles.logoLink}>
       <span className={styles.logo} />
     </Link>
-    <ul className={styles.navigation}>
-      <li className={styles.navigationItem}>
-        <Link to="/" activeClassName="active">
-          Home
-        </Link>
-      </li>
-      <li className={styles.navigationItem}>
-        <Link to="/blog/" activeClassName="active">
-          Blog
-        </Link>
-      </li>
-      <li className={styles.navigationItem}>
-        <Link to="/about/" activeClassName="active">
-          About
-        </Link>
-      </li>
-    </ul>
+    
   </nav>
   <div className={styles.footsie}>
-    Resources:
+  
   <ul className={styles.navigation}>
+    <li className={styles.navigationItem}>  
+    <Link to="/agile-principles/" activeClassName="active">
+            agile principles
+    </Link>
+    </li>
+    <li className={styles.navigationItem}>  
+    <Link to="/agile-principles/" activeClassName="active">
+            agile principles
+    </Link>
+    </li>
     <li className={styles.navigationItem}>  
     <Link to="/agile-principles/" activeClassName="active">
             agile principles
