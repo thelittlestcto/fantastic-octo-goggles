@@ -26,8 +26,8 @@ const Footer = () => (
     </Link>
     </li>
     <li className={styles.navigationItem}>  
-    <Link to="/agile-principles/" activeClassName="active">
-            agile principles
+    <Link to="https://www.boyney.io/" activeClassName="active">
+            Site & me inspired by David Boyne
     </Link>
     </li>
   </ul>
