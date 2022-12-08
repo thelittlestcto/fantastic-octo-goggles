@@ -26,6 +26,16 @@
   padding: var(--space-sm) var(--size-gutter);
   
 }
+.contactIconsContainer {
+  text-align:center;
+}
+
+.contactIconsContainer > a > svg {
+  color:black;
+  padding:2px;
+
+}
+
 
 .footsie {
   font-size: var(--text-xxs);
