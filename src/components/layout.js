@@ -5,7 +5,7 @@ import './global.css'
 import Seo from './seo'
 import Navigation from './navigation'
 import Footer from './footer'
-import Script from "gatsby"
+import { Script } from "gatsby"
 
 <Script id="clarity">
  {`
