@@ -19,9 +19,11 @@ const ArticlePreview = ({ posts }) => {
               <div className={styles.details}>
                 <Link to={`/blog/${post.slug}`} className={styles.link}>
                   <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
-               
-                <span class={styles.subdetails}>
+                </Link>
+                <span className={styles.subdetails}>
+                <Link to={`/blog/${post.slug}`} className={styles.link}>
                 <h2 className={styles.title}>{post.title}</h2>
+                </Link>
                   {post.description?.raw && renderRichText(post.description)}
                   <div className={styles.meta}>
                   <small className="meta">{post.publishDate}</small>
@@ -29,7 +31,7 @@ const ArticlePreview = ({ posts }) => {
                   
                 </div>
                 </span>
-                </Link>
+                
               </div>
             </li>
           )

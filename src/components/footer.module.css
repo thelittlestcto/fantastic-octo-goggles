@@ -17,24 +17,31 @@
   color: var(--primary);
 }
 */
-.container {
-  display: flex;
-  justify-content: space-between;
-  max-width: var(--size-max-width);
-  align-items: center;
-  margin: 0 auto;
-  padding: var(--space-sm) var(--size-gutter);
-  
-  
-}
+
 .contactIconsContainer {
   text-align:center;
+  min-height: 50px;
 }
 
 .contactIconsContainer > a > svg {
-  color:black;
+  fill:white;
   padding:2px;
 
+}
+
+.footer{
+  background:black;
+}
+
+.footerGrid{
+  color:white;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px;
+}
+
+.footerGridItem {
+  text-align:
 }
 
 
