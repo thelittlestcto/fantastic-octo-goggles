@@ -26,9 +26,9 @@ const Footer = () => (
     </Link>
     </li>
     <li className={styles.navigationItem}>  
-    <Link to="https://www.boyney.io/" activeClassName="active">
+    <a href="https://www.boyney.io/" activeClassName="active">
             Site & me inspired by David Boyne
-    </Link>
+    </a>
     </li>
   </ul>
   </div>

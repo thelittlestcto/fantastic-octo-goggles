@@ -23,7 +23,7 @@ class Template extends React.Component {
             })(window, document, "clarity", "script", "eulfh7sro3");
           `}
         </Script>
-        
+       
         <Script id="gtag_l" src="https://www.googletagmanager.com/gtag/js?id=G-CWS43VLQ2P"></Script>
         <Script id="gtag">
           {`
