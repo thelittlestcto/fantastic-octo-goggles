@@ -1,28 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Container from './container-footer'
+import Newsletter from './newsletter.js'
 import * as styles from './footer.module.css'
 
 const Footer = () => (
   <Container as="footer">
     <div className={styles.footer}>
       <div className={styles.footerGrid}>
-        <div className={styles.footerGridItem}>
-        The Littlest CTO
-        </div>
-        <div className={styles.footerGridItem}>
-        Useful links
-        <Link to="/" activeClassName="active">
-          Home
-        </Link>
-        </div>
-        <div className={styles.footerGridItem}>
-        Support
-        </div>
-        <div className={styles.footerGridItem}>
-        Get updates
         
-        </div>
         
       </div>
       <div className={styles.contactIconsContainer}>

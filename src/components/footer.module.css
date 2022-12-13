@@ -1,4 +1,3 @@
-
 .contactIconsContainer {
   text-align:center;
   min-height: 50px;
@@ -7,29 +6,30 @@
 .contactIconsContainer > a > svg {
   fill:white;
   padding:2px;
-
 }
 
 .footer{
   background:black;
 }
 
-.footerGrid{
+.footerGrid {
   color:white;
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px;
+  grid-template-columns: 1fr 50% 20% 20%;
+  
 }
 
 .footerGridItem {
-  text-align:
+  align-items: left;
 }
-
+.footerGridItemBig {
+  grid-column: 1 / span 4;
+  
+}
 
 .footsie {
   font-size: var(--text-xxs);
   padding: var(--space-sm) 0;
-  
 }
 
 .navigation {
