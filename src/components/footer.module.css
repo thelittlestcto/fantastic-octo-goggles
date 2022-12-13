@@ -11,6 +11,9 @@
 .footer{
   background:black;
 }
+.boyneylink{
+  font-size:var(--text-xxs);
+}
 
 .footerGrid {
   color:white;
@@ -22,6 +25,17 @@
 .footerGridItem {
   align-items: left;
 }
+.footerGridItemBig {
+  grid-column: 1 / span 4;
+  
+}
+
+.footerGridItemBigLinks {
+  grid-column: 1 / span 4;
+  font-size:xx-small;
+  text-align:right;
+}
+
 .footerGridItemBig {
   grid-column: 1 / span 4;
   
