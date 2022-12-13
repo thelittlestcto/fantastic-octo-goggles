@@ -5,7 +5,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: "The Littlest CTO",
-    description: "Reflections from the life of a Technology Leader",
+    description: "Things to know about How to be a successful CTO",
   },
   plugins: [
     "gatsby-transformer-sharp",
