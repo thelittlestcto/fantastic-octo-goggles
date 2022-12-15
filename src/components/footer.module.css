@@ -32,7 +32,7 @@
 
 .footerGridItemBigLinks {
   grid-column: 1 / span 4;
-  font-size:xx-small;
+  font-size:x-small;
   text-align:right;
 }
 
