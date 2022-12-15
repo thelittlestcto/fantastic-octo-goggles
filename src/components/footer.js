@@ -37,7 +37,7 @@ const Footer = () => (
           
         </div>
         <div className={styles.footerGridItemBigLinks}>
-           <a className={StyleSheet.boyneylink}  href="https://www.boyney.io/">Site & me inspired by @boyney123 </a>
+           <a className={styles.boyneylink}  href="https://www.boyney.io/">Site & me inspired by @boyney123 </a>
         </div>
       </div>
   </div>
