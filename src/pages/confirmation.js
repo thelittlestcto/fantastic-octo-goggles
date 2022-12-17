@@ -7,8 +7,8 @@ class RootIndex extends React.Component {
       return (
         <Layout location={this.props.location} newsletter='off'>
           <Hero
-          title='Almost There!'
-          content='Please check your email and confirm'
+          title='Thank You!'
+          content=''
         />
         
         
