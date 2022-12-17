@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from './container-footer'
 import * as styles from './footer.module.css'
+import Newsletter from './newsletter'
 
 const Footer = () => (
   <Container as="footer">
@@ -34,7 +35,7 @@ const Footer = () => (
           </div>
         </div>
         <div className={styles.footerGridItemBigLinks}>
-          
+          <Newsletter></Newsletter>
         </div>
         <div className={styles.footerGridItemBigLinks}>
            <a className={styles.boyneylink}  href="https://www.boyney.io/">Site & me inspired by @boyney123 </a>

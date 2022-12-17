@@ -4,15 +4,15 @@ import { Component } from "react";
 class Newsletter extends Component {
   componentDidMount() {
     const script = document.createElement("script");
-    script.src = "https://winning-composer-4657.ck.page/a077f98377/index.js";
+    script.src = "https://winning-composer-4657.ck.page/b81919f49a/index.js";
     script.async = true;
-    script.setAttribute("data-uid", "a077f98377");
+    script.setAttribute("data-uid", "b81919f49a");
     this.instance.appendChild(script);
   }
 
   render() {
     return (
-        <span ref={(el) => (this.instance = el)}></span>
+        <div ref={(el) => (this.instance = el)}></div>
     );
   }
 }
