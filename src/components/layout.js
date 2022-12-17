@@ -14,6 +14,7 @@ class Template extends React.Component {
     return (
       <>
         <Seo />
+        
         <Script id="gtag_l" src="https://www.googletagmanager.com/gtag/js?id=G-CWS43VLQ2P"></Script>
         <Script id="gtag">
           {`

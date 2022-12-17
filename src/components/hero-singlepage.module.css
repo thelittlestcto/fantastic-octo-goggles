@@ -1,0 +1,39 @@
+.hero {
+  align-items: flex-end;
+  display: flex;
+  min-height: 150px;
+  padding: 0 0 var(--size-gutter);
+  position: relative;
+  background: linear-gradient(90deg, #1ce09f 0%, #005133 100%);  
+}
+
+
+.details {
+  color: white;
+  margin: 0 auto;
+  max-width: 40rem;
+  opacity: 1;
+  width: 85%;
+  padding: var(--space-2xl) var(--size-gutter) 0;
+  text-align: center;
+
+}
+
+.title {
+  padding-top: 5px;
+  letter-spacing: -0.012em;
+  font-size: var(--text-title);
+  font-weight: var(--bold);
+  line-height: var(--solid);
+  margin: 0 0 var(--space-xl);
+}
+
+.content {
+  font-size: var(--text-sm);
+  font-weight: var(--semibold);
+  margin: 0;
+}
+
+  .details {
+    padding: var(--space-2xl) var(--size-gutter) 0;
+  }
