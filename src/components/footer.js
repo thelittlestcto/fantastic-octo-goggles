@@ -3,7 +3,7 @@ import Container from './container-footer'
 import * as styles from './footer.module.css'
 import Newsletter from './newsletter'
 
-const Footer = () => (
+const Footer = (props) => (
   <Container as="footer">
     <div className={styles.footer}>
       <div className={styles.footerGrid}>
@@ -35,7 +35,7 @@ const Footer = () => (
           </div>
         </div>
         <div className={styles.footerGridItemBigLinks}>
-          <Newsletter></Newsletter>
+          <Newsletter display={props.newsletter || 'on'}></Newsletter>
         </div>
         <div className={styles.footerGridItemBigLinks}>
            <a className={styles.boyneylink}  href="https://www.boyney.io/">Site & me inspired by @boyney123 </a>

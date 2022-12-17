@@ -26,7 +26,7 @@ class Template extends React.Component {
         </Script>
         <Navigation />
         <main>{children}</main>
-        <Footer />
+        <Footer newsletter={this.props.newsletter} />
       </>
     )
   }
