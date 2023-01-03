@@ -13,14 +13,14 @@
     the viewport width
   */
   height: 61.8vh;
-  max-height: 300px;
+  max-height: 250px;
   width: 100%;
 }
 
 .details {
   color: var(--text-color);
   margin: 0 auto;
-  max-width: 40rem;
+  max-width: 58rem;
   opacity: 1;
   width: 85%;
   padding: var(--space-2xl) var(--size-gutter) 0;
@@ -55,7 +55,6 @@
   }
 
   .details {
-    max-width: 44rem;
     padding: var(--space-2xl) var(--size-gutter) 0;
   }
 }
