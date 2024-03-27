@@ -9,8 +9,9 @@
 }
 
 .heroHolder {
+  max-width: var(--size-max-width);
   margin: 0 auto;
-  align-items: flex-start;
+  align-items: flex-end;
   width:100%;
   justify-content:center;
   display: flex;
@@ -20,10 +21,9 @@
 
 .imageWrapper {
   display: flex;
-  
+  flex: 1; /* Prevent the image from shrinking */
+  max-width:50%;
   margin-right: 20px; /* Space between the image and the text */
-  width: 200px;
-  flex-shrink:0;
 }
 
 .image {
@@ -45,7 +45,6 @@
   width: 85%;
   margin-left:20px;
   padding: var(--space-md) var(--size-gutter) 0;
-  flex-grow:1;
   
 }
 

@@ -15,6 +15,7 @@ class PersonIndex extends React.Component {
       <Layout location={this.props.location}>
         <Seo title="About" />
         <Hero
+          isWelcome={true}
           image={author.heroImage.gatsbyImage}
           title={author.name}
           content={author.shortBio}
@@ -28,31 +29,31 @@ class PersonIndex extends React.Component {
 export default PersonIndex
 
 export const pageQuery = graphql`
-  query PersonIndexQuery {
-    allContentfulPerson {
-      nodes {
-        shortBio {
-          raw
-        }
-        longBio {
-          raw
-        }
-        twitter
-        name
-        company
-        email
-        sys {
-          type
-          revision
-        }
-        title
-        heroImage: image {
-          gatsbyImage(
-            placeholder: BLURRED
-            width: 180
-          )
-        }
+query PersonIndexQuery {
+  allContentfulPerson(filter: {name: {eq: "Alex"}}, limit: 1) {
+    nodes {
+      shortBio {
+        raw
+      }
+      longBio {
+        raw
+      }
+      twitter
+      name
+      company
+      email
+      sys {
+        type
+        revision
+      }
+      title
+      heroImage: imageAlternative {
+        gatsbyImage(
+          placeholder: BLURRED
+          width: 180
+        )
       }
     }
   }
+}
 `

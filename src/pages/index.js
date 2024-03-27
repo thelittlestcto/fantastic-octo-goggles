@@ -48,9 +48,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
+    allContentfulPerson(filter: { name: {eq: "Alex"}}, limit: 1)  {
       nodes {
         name
         shortBio {
