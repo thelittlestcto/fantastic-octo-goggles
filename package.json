@@ -19,7 +19,11 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "contentful-import": "^8.0.0",
+    "eslint": "^10.0.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
     "netlify-cli": "^10.0.0"
   },
   "engines": {
@@ -46,6 +50,7 @@
     "setup": "node ./bin/setup.js",
     "netlify:login": "netlify login",
     "netlify:deploy": "netlify deploy -d public -p",
-    "gatsby-provision": "gatsby-provision-contentful --contentful-data-path='./contentful/export.json' --space-id=$CONTENTFUL_SPACE_ID --management-token=$CONTENTFUL_MANAGEMENT_TOKEN"
+    "gatsby-provision": "gatsby-provision-contentful --contentful-data-path='./contentful/export.json' --space-id=$CONTENTFUL_SPACE_ID --management-token=$CONTENTFUL_MANAGEMENT_TOKEN",
+    "lint": "eslint 'src/**/*.{js,jsx}' --max-warnings=0"
   }
 }
