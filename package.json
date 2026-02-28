@@ -10,7 +10,6 @@
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^17.1.6",
     "gatsby": "^5.16.1",
-    "gatsby-plugin-clarity": "^1.0.1",
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-sharp": "^5.16.0",
     "gatsby-source-contentful": "^8.17.0",
