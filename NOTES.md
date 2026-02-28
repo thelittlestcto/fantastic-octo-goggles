@@ -1,5 +1,34 @@
 # NOTES.md — Architecture Decisions & Known Issues
 
+## Commit Convention
+
+This project uses [gitmoji](https://gitmoji.dev/) prefixes on all commit messages.
+
+| Gitmoji | Code | When to use |
+|---|---|---|
+| ⬆️ | `:arrow_up:` | Upgrade dependencies |
+| ⬇️ | `:arrow_down:` | Downgrade dependencies |
+| 📝 | `:memo:` | Add or update documentation |
+| 🔧 | `:wrench:` | Config files (netlify.toml, gatsby-config.js etc.) |
+| ✨ | `:sparkles:` | New feature |
+| 🐛 | `:bug:` | Bug fix |
+| 🔥 | `:fire:` | Remove code or files |
+| ♻️ | `:recycle:` | Refactor |
+| 💚 | `:green_heart:` | Fix CI build |
+| 👷 | `:construction_worker:` | CI/CD pipeline changes |
+| 🔒️ | `:lock:` | Security fixes |
+| 🔍️ | `:mag:` | SEO improvements |
+| 🎨 | `:art:` | Code structure / formatting |
+| 💥 | `:boom:` | Breaking changes |
+| 🚀 | `:rocket:` | Deploy related |
+| 🩹 | `:adhesive_bandage:` | Simple/minor fix |
+| ⚰️ | `:coffin:` | Remove dead code |
+| 🛂 | `:passport_control:` | Auth, privacy, consent |
+
+Full reference: https://gitmoji.dev/
+
+---
+
 Running log of decisions, findings, and context for anyone working on this project.
 
 ---
