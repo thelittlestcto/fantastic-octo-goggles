@@ -89,6 +89,14 @@ jobs:
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-report
+          path: lhci-reports/
+          retention-days: 7
+
   deploy:
     name: Deploy to Cloudflare Pages
     runs-on: ubuntu-latest
