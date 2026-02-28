@@ -1,73 +1,144 @@
-# Contentful Gatsby Starter Blog
+# thelittlestcto.com
 
-Create a [Gatsby](http://gatsbyjs.com/) blog powered by [Contentful](https://www.contentful.com).
+Personal site and blog for Alex Shaw — engineering leadership, CTO insights, and practical advice for technical leaders.
 
-![An article page of the starter blog](./screenshot.png "An article page of the starter blog")
+**Live:** [thelittlestcto.com](https://thelittlestcto.com)  
+**Hosting:** Netlify (auto-deploy from `main`)  
+**CMS:** Contentful (content managed via [app.contentful.com](https://app.contentful.com))
 
-Static sites are scalable, secure and have very little required maintenance. They come with a drawback though. Not everybody feels good editing files, building a project and uploading it somewhere. This is where Contentful comes into play.
+---
 
-With Contentful and Gatsby you can connect your favorite static site generator with an API that provides an easy to use interface for people writing content and automate the publishing using services like [Travis CI](https://travis-ci.org/) or [Netlify](https://www.netlify.com/).
+## Tech Stack
 
-## Features
+| Layer | Technology |
+|---|---|
+| Framework | [Gatsby v5](https://www.gatsbyjs.com/) |
+| Language | React 18 (JSX) |
+| CMS | [Contentful](https://www.contentful.com/) |
+| Styling | CSS Modules |
+| Analytics | Microsoft Clarity + Google Analytics *(consent pending — see NOTES.md)* |
+| Newsletter | ConvertKit |
+| Hosting | Netlify |
+| Node | ≥20 |
 
-- Simple content model and structure. Easy to adjust to your needs.
-- Use the [synchronization feature](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization) of our [Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/).
-- Responsive/adaptive images via [gatsby-plugin-image](https://www.gatsbyjs.org/packages/gatsby-plugin-image/) and our [Images API](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/synchronization/initial-synchronization-of-entries-of-a-specific-content-type).
+---
 
-## Getting started
-
-See our [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
-
-### Get the source code and install dependencies.
-
-```
-$ git clone https://github.com/contentful/starter-gatsby-blog.git
-$ npm install
-```
-
-Or use Gatsby Cloud
-
-Use Deploy Now to get started in [Gatsby Cloud](https://gatsbyjs.com/products/cloud):
-
-[<img src="https://www.gatsbyjs.com/deploynow.png" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/contentful/starter-gatsby-blog)
-
-If you use Deploy Now, Gatsby Cloud will run the `gatsby-provision` script on your behalf, if you choose, after you Quick Connected to your empty Contentful Space. That script will add the necessary content models and content to support this site.
-
-
-Or use the [Gatsby CLI](https://www.npmjs.com/package/gatsby-cli).
+## Project Structure
 
 ```
-$ gatsby new contentful-starter-blog https://github.com/contentful/starter-gatsby-blog/
+.
+├── src/
+│   ├── components/       # Shared React components
+│   │   ├── seo.js        # Gatsby Head API SEO component
+│   │   ├── layout.js     # Page wrapper (nav + footer)
+│   │   ├── navigation.js # Top nav
+│   │   ├── footer.js     # Footer with social links + newsletter
+│   │   ├── newsletter.js # ConvertKit embed
+│   │   ├── hero.js       # Homepage hero
+│   │   ├── article-preview.js  # Blog card grid
+│   │   ├── article-hero.js     # Blog post hero
+│   │   ├── tags.js       # Tag pills
+│   │   └── ...
+│   ├── pages/
+│   │   ├── index.js          # Homepage
+│   │   ├── blog.js           # Blog listing
+│   │   ├── about.js          # About page
+│   │   ├── agile-principles.js  # Agile content listing
+│   │   ├── confirmation.js   # Newsletter confirmation
+│   │   └── 404.js            # 404 page
+│   └── templates/
+│       └── blog-post.js      # Individual blog post template
+├── contentful/
+│   └── export.json       # Contentful content model export
+├── gatsby-config.js      # Gatsby + plugin configuration
+├── gatsby-node.js        # Page generation from Contentful data
+├── netlify.toml          # Netlify build + headers config
+├── NOTES.md              # Architecture decisions and known issues
+└── TASKS.md              # Backlog and work tracker
 ```
 
-### Set up of the needed content model and create a configuration file
+---
 
-This project comes with a Contentful setup command `npm run setup`.
+## Local Development
 
-This command will ask you for a space ID, and access tokens for the Contentful Management and Delivery API and then import the needed content model into the space you define and write a config file (`./.contentful.json`).
+### Prerequisites
 
-`npm run setup` automates that for you but if you want to do it yourself rename `.contentful.json.sample` to `.contentful.json` and add your configuration in this file.
+- Node ≥20
+- A Contentful account with access to the `thelittlestcto` space
 
-## Crucial Commands
+### 1. Clone and install
 
-### `npm run dev`
+```bash
+git clone git@github.com:thelittlestcto/fantastic-octo-goggles.git
+cd fantastic-octo-goggles
+npm install
+```
 
-Run the project locally with live reload in development mode.
+### 2. Configure environment
 
-### `npm run build`
+Create `.env.development` in the project root:
 
-Run a production build into `./public`. The result is ready to be put on any static hosting you prefer.
+```env
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_delivery_api_token
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=your_preview_api_token
+```
 
-### `npm run serve`
+Get these from [Contentful → Settings → API Keys](https://app.contentful.com).  
+The `.gitignore` already excludes all `.env*` files.
 
-Spin up a production-ready server with your blog. Don't forget to build your page beforehand.
+### 3. Run locally
 
-## Deployment
+```bash
+npm run dev
+```
 
-See the [official Contentful getting started guide](https://www.contentful.com/developers/docs/tutorials/general/get-started/).
+Site available at `http://localhost:8000`  
+GraphQL explorer at `http://localhost:8000/___graphql`
 
-## Contribution
+---
 
-Feel free to open pull requests to fix bugs. If you want to add features, please have a look at the [original version](https://github.com/contentful-userland/gatsby-contentful-starter). It is always open to contributions and pull requests.
+## Build & Deploy
 
-You can learn more about how Contentful userland is organized by visiting [our about repository](https://github.com/contentful-userland/about).
+### Production build (local)
+
+```bash
+npm run build   # outputs to ./public
+npm run serve   # preview the production build locally
+```
+
+### Deployment
+
+Netlify auto-deploys from the `main` branch on every push.  
+Build command: `gatsby build`  
+Publish directory: `public`  
+Node version: 20 (set in `netlify.toml`)
+
+### Content updates
+
+Content is managed in Contentful. Publishing a change in Contentful triggers a Netlify webhook → rebuild → deploy. No code changes needed for content-only updates.
+
+---
+
+## Branches
+
+| Branch | Purpose |
+|---|---|
+| `main` | Production — auto-deploys to Netlify |
+| `development` | Feature work — merge to `main` via PR |
+
+---
+
+## Content Model (Contentful)
+
+| Type | Fields | Used by |
+|---|---|---|
+| `BlogPost` | title, slug, publishDate, heroImage, description, body, tags, author | Blog listing + post template |
+| `Person` | name, title, company, shortBio, longBio, image, imageAlternative, twitter, email | Homepage hero, About page |
+
+---
+
+## Known Issues & TODOs
+
+See [TASKS.md](./TASKS.md) for the full backlog.  
+See [NOTES.md](./NOTES.md) for architecture decisions.
