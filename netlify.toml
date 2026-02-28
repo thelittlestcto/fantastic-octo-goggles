@@ -3,7 +3,7 @@
   publish = "public"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   GATSBY_TELEMETRY_DISABLED = "1"
 
 # Disable legacy prerendering (Netlify deprecation)
