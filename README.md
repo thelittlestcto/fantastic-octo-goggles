@@ -19,7 +19,7 @@ Personal site and blog for Alex Shaw — engineering leadership, CTO insights, a
 | Analytics | Microsoft Clarity + Google Analytics *(consent pending — see NOTES.md)* |
 | Newsletter | ConvertKit |
 | Hosting | Netlify |
-| Node | ≥20 |
+| Node | ≥22 |
 
 ---
 
@@ -63,7 +63,7 @@ Personal site and blog for Alex Shaw — engineering leadership, CTO insights, a
 
 ### Prerequisites
 
-- Node ≥20
+- Node ≥22
 - A Contentful account with access to the `thelittlestcto` space
 
 ### 1. Clone and install
@@ -112,7 +112,7 @@ npm run serve   # preview the production build locally
 Netlify auto-deploys from the `main` branch on every push.  
 Build command: `gatsby build`  
 Publish directory: `public`  
-Node version: 20 (set in `netlify.toml`)
+Node version: 22 (set in `.nvmrc`, `netlify.toml`, and Netlify dashboard `NODE_VERSION` env var)
 
 ### Content updates
 

@@ -71,15 +71,17 @@ Original description was "Things to know about How to be a successful CTO" — u
 ### Netlify
 - Auto-deploys from `main` branch
 - Build command: `gatsby build`
-- Node version: 20 (pinned in `netlify.toml`)
+- Node version: 22 (pinned in `.nvmrc`, `netlify.toml`, and Netlify dashboard `NODE_VERSION` env var)
+- Legacy prerendering: **disabled** in Netlify dashboard (redundant for Gatsby v5 static builds)
 - Security headers configured in `netlify.toml` (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
 - JS assets cached immutably (`max-age=31536000, immutable`) — Gatsby content-hashes filenames so this is safe
 
 ### Environment Variables (Netlify)
-Must be set in Netlify dashboard → Site settings → Environment variables:
+Must be set in Netlify dashboard → Site configuration → Environment variables:
 - `CONTENTFUL_SPACE_ID`
 - `CONTENTFUL_ACCESS_TOKEN`
 - `CONTENTFUL_PREVIEW_ACCESS_TOKEN`
+- `NODE_VERSION` = `22` — **important:** Netlify's dashboard env var takes precedence over `.nvmrc`; must be kept in sync
 
 ### Contentful Webhooks
 To auto-rebuild when content is published: Contentful → Space settings → Webhooks → add Netlify build hook URL.

@@ -70,12 +70,12 @@ Work tracker for the site rebuild and improvement project.
   - [x] Fixed `og:image` URL protocol (`http:` → `https:`)
   - [x] Added Twitter handle (`@axshaw`) to SEO component
   - [x] Added `siteUrl` to `siteMetadata`
-  - [x] Updated Node engine requirement `>=14` → `>=20`
-- [x] **Rewrote `netlify.toml`** — proper build command, Node 20, security headers, immutable JS cache headers
-- [x] **Confirmed build passing** — Gatsby v5 builds clean, all pages generated
-- [x] **Rewrote README** — accurate stack, local dev setup, project structure, content model, deployment
-- [x] **Added NOTES.md** — architecture decisions, known issues, analytics concerns, removed dependencies
+  - [x] Updated Node engine requirement `>=14` → `>=22`
+- [x] **Node 22 throughout** — `.nvmrc`, `netlify.toml`, `package.json` all pinned to 22; Netlify dashboard `NODE_VERSION` env var updated to 22
+- [x] **Rewrote `netlify.toml`** — build command, Node 22, security headers, immutable JS cache headers
+- [x] **Disabled Netlify legacy prerendering** — turned off in Netlify dashboard (redundant for Gatsby v5 static builds)
+- [x] **Confirmed build passing** — Gatsby v5 builds clean on Node 22, all pages generated, deployed to production
+- [x] **Rewrote README.md** — accurate stack, local dev setup, project structure, content model, deployment
+- [x] **Added NOTES.md** — architecture decisions, known issues, analytics GDPR concerns, removed dependencies
 - [x] **Added TASKS.md** — this file
-- [x] Deleted stale `WHATS-NEXT.md` (Contentful starter boilerplate)
-- [x] Deleted stale `app.json` (Heroku deploy config — not used)
-- [x] Deleted stale `static.json` (superseded by `netlify.toml`)
+- [x] Deleted stale `WHATS-NEXT.md`, `app.json`, `static.json`, `screenshot.png` (Contentful starter boilerplate)
