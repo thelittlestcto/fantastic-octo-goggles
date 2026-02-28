@@ -5,7 +5,6 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import readingTime from 'reading-time'
 import Seo from '../components/seo'
 import Layout from '../components/layout'
 import Hero from '../components/article-hero'
@@ -21,7 +20,7 @@ class BlogPostTemplate extends React.Component {
       JSON.parse(post.description.raw)
     )
     const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
-    const { minutes: timeToRead } = readingTime(plainTextBody)
+    const timeToRead = Math.ceil(plainTextBody.split(/\s+/).length / 200)
 
     const options = {
       
@@ -40,11 +39,6 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <Seo
-          title={post.title}
-          description={plainTextDescription}
-          image={`http:${post.heroImage.resize.src}`}
-        />
         <Hero
           image={post.heroImage?.gatsbyImage}
           title={post.title}
@@ -89,6 +83,21 @@ class BlogPostTemplate extends React.Component {
 }
 
 export default BlogPostTemplate
+
+export const Head = ({ data }) => {
+  const post = data?.contentfulBlogPost
+  if (!post) return <Seo />
+  const plainTextDescription = post.description?.raw
+    ? documentToPlainTextString(JSON.parse(post.description.raw))
+    : ''
+  return (
+    <Seo
+      title={post.title}
+      description={plainTextDescription}
+      image={post.heroImage?.resize?.src ? `https:${post.heroImage.resize.src}` : undefined}
+    />
+  )
+}
 
 export const pageQuery = graphql`
   query BlogPostBySlug(

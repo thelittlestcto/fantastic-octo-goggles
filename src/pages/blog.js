@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
+import Seo from '../components/seo'
 import Layout from '../components/layout'
 
 import ArticlePreview from '../components/article-preview'
@@ -22,9 +23,11 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
+export const Head = () => <Seo title="Blog" />
+
 export const pageQuery = graphql`
   query BlogQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulBlogPost(sort: { publishDate: DESC }) {
       nodes {
         title
         slug

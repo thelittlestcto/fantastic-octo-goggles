@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
+const Seo = ({ description = '', title, image, children }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -10,6 +9,7 @@ const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
           siteMetadata {
             title
             description
+            siteUrl
           }
         }
       }
@@ -18,58 +18,26 @@ const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  const siteUrl = site.siteMetadata?.siteUrl
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      defaultTitle={defaultTitle}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          name: `image`,
-          content: image,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:image`,
-          content: image,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.social?.twitter || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <>
+      <html lang="en" />
+      <title>{title ? `${title} | ${defaultTitle}` : defaultTitle}</title>
+      <meta name="description" content={metaDescription} />
+      {image && <meta name="image" content={image} />}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title || defaultTitle} />
+      <meta property="og:description" content={metaDescription} />
+      {image && <meta property="og:image" content={image} />}
+      {siteUrl && <meta property="og:url" content={siteUrl} />}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@axshaw" />
+      <meta name="twitter:title" content={title || defaultTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      {image && <meta name="twitter:image" content={image} />}
+      {children}
+    </>
   )
 }
 

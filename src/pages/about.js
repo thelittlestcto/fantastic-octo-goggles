@@ -13,7 +13,6 @@ class PersonIndex extends React.Component {
     const [author] = get(this, 'props.data.allContentfulPerson.nodes')
     return (
       <Layout location={this.props.location}>
-        <Seo title="About" />
         <Hero
           isWelcome={true}
           image={author.heroImage.gatsbyImage}
@@ -27,6 +26,8 @@ class PersonIndex extends React.Component {
 }
 
 export default PersonIndex
+
+export const Head = () => <Seo title="About" />
 
 export const pageQuery = graphql`
 query PersonIndexQuery {
