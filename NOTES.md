@@ -99,7 +99,7 @@ Original description was "Things to know about How to be a successful CTO" — u
 
 ### Netlify
 - Auto-deploys from `main` branch
-- Build command: `gatsby build`
+- Build command: `npx gatsby build`
 - Node version: 22 (pinned in `.nvmrc`, `netlify.toml`, and Netlify dashboard `NODE_VERSION` env var)
 - Legacy prerendering: **disabled** in Netlify dashboard (redundant for Gatsby v5 static builds)
 - Security headers configured in `netlify.toml` (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)

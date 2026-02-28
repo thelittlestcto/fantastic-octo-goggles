@@ -110,7 +110,7 @@ npm run serve   # preview the production build locally
 ### Deployment
 
 Netlify auto-deploys from the `main` branch on every push.  
-Build command: `gatsby build`  
+Build command: `npx gatsby build`  
 Publish directory: `public`  
 Node version: 22 (set in `.nvmrc`, `netlify.toml`, and Netlify dashboard `NODE_VERSION` env var)
 
