@@ -6,76 +6,109 @@ Work tracker for the site rebuild and improvement project.
 
 ## Current Priority
 
-- [ ] **GitHub Actions CI** — lint + build check on PRs; block merges to `main` without passing build
-- [ ] **GDPR / Analytics** — gate GA4 and Clarity behind consent, or replace with privacy-first analytics (Plausible/Fathom)
-- [ ] **Privacy Policy page** — required for ConvertKit, GA, Clarity
+- [ ] **Privacy Policy page** — required for ConvertKit newsletter (email collection = personal data)
+- [ ] **Contentful → CF Pages webhook** — content publishes don't currently trigger rebuilds
+- [ ] **Tighten Lighthouse thresholds** — once scores stabilise post perf fixes, raise Perf ≥0.85 and BP ≥0.90
+- [ ] **Branch protection on `main`** — require PR + passing CI before merge
 
 ---
 
 ## Backlog
 
-### Infrastructure
-- [ ] GitHub Actions CI pipeline (lint → build → deploy preview)
-- [ ] Dependabot — automated dependency PRs
-- [ ] Branch protection on `main` — require PR + passing CI before merge
-
 ### GDPR & Privacy
-- [ ] Decide analytics strategy: replace GA+Clarity with Plausible/Fathom, OR add consent banner
-- [ ] Add cookie consent banner if keeping GA/Clarity
-- [ ] Add Privacy Policy page (required for any third-party data processing)
-- [ ] Review ConvertKit data processing — link to privacy policy from newsletter form
+- [ ] Add Privacy Policy page (required for ConvertKit, link from newsletter form and footer)
+- [ ] Add privacy policy link to ConvertKit form embed
+- [ ] Review ConvertKit double opt-in — verify it's enabled in ConvertKit dashboard
 
-### Performance & SEO
-- [ ] Add `sitemap.xml` (gatsby-plugin-sitemap)
-- [ ] Add `robots.txt`
-- [ ] Audit Lighthouse scores — fix any Performance/SEO/Accessibility issues
-- [ ] Fix missing `alt` text on any images
+### Performance
+- [ ] Remove `lodash` — only uses `get()`, replace with optional chaining (`?.`)
+- [ ] Investigate Gatsby bundle size — run `gatsby build --verbose` and review chunk sizes
 - [ ] Fix `[gatsby-plugin-image] Missing image prop` warnings (2 occurrences at build time)
-- [ ] Add Open Graph image for homepage (currently no default OG image)
-- [ ] Canonical URLs
+- [ ] Add default OG image for pages without a heroImage
 
 ### Code Quality
-- [ ] Convert class components → function components + hooks (all pages and templates currently use class syntax)
-- [ ] Remove `lodash` — only used for `get()` which can be replaced with optional chaining (`?.`)
-- [ ] Add ESLint + Prettier config
-- [ ] Fix missing image prop warnings in `hero.js` / `article-preview.js`
+- [ ] Convert class components → function components + hooks (all pages/templates)
+- [ ] Add Prettier config for consistent formatting
+- [ ] Add Dependabot for automated dependency PRs
 
-### Bug Fixes
-- [ ] Fix LinkedIn URL typo in footer: `hhttps://` → `https://`
-- [ ] Audit all footer social links for accuracy
+### SEO
+- [ ] Set up Google Search Console — submit `sitemap/sitemap-index.xml`
+- [ ] Add `og:image` for homepage (currently no default social share image)
+- [ ] Review blog post descriptions for SEO — some may be too long for meta snippets
+
+### Infrastructure
+- [ ] Set up Contentful webhook → CF Pages build hook (auto-rebuild on content publish)
+- [ ] Preview deploy environments for PRs
+- [ ] Raise Lighthouse CI thresholds once scores improve
 
 ### Content
-- [ ] Review and update homepage hero text and bio
-- [ ] Review `siteMetadata.description` — used in SEO and should be compelling
-- [ ] Review all blog post tags for consistency
-- [ ] Consider adding an "About" section to the homepage
-
-### Hosting
-- [ ] Evaluate Vercel vs Netlify for Gatsby v5 (Vercel has first-class Gatsby support)
-- [ ] Set up preview deploy environments for `development` branch
+- [ ] Review and update homepage hero text
+- [ ] Review `siteMetadata.description` for tone and accuracy
+- [ ] Consider adding featured posts or categories to homepage
+- [ ] Write new blog posts
 
 ---
 
 ## Completed ✅
 
-### 2026-02-28 — Initial upgrade session
+### 2026-03-01 — Performance, SEO & CI/CD
 
-- [x] Cloned repo and audited full codebase
-- [x] Added `.env.development` and `.env.production` with Contentful credentials
+- [x] **GitHub Actions CI/CD pipeline** (`.github/workflows/ci.yml`)
+  - Lint (ESLint) → Build (Gatsby + Contentful) → Lighthouse CI → Deploy (CF Pages)
+  - Lint and build required to pass before deploy; Lighthouse warns on low scores
+  - Deploy only runs on `main` branch push, not PRs
+  - Lighthouse reports saved as GitHub Actions artifacts (7 day retention)
+- [x] **ESLint** — flat config (`eslint.config.mjs`) for ESLint 10; `npm run lint` script added
+  - `eslint-plugin-react`, `eslint-plugin-jsx-a11y`, `@eslint/js`
+  - Zero warnings allowed (`--max-warnings=0`)
+  - Fixed: removed unused `plainTextDescription` variable in `blog-post.js` render()
+- [x] **Lighthouse CI** — `@lhci/cli` with `.lighthouserc.json`
+  - Fixed wrong package (`lhci` → `@lhci/cli`)
+  - Reports saved to `./lhci-reports/` as filesystem artifacts
+  - Thresholds: Perf ≥0.70 (warn), A11y ≥0.85 (error), BP ≥0.75 (warn), SEO ≥0.85 (error)
+- [x] **GitHub Actions secrets** configured: `CONTENTFUL_SPACE_ID`, `CONTENTFUL_ACCESS_TOKEN`, `CONTENTFUL_PREVIEW_ACCESS_TOKEN`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
+- [x] **SEO — Sitemap** (`gatsby-plugin-sitemap`)
+  - Auto-generates `/sitemap/sitemap-index.xml` at build
+  - Homepage priority 1.0/weekly, blog posts 0.8/monthly, other pages 0.6/monthly
+- [x] **SEO — Canonical URLs** — `<link rel="canonical">` added to all pages via `Seo` component
+- [x] **SEO — JSON-LD structured data**
+  - Blog posts: `Article` schema (headline, description, url, image, datePublished, author, publisher)
+  - Other pages: `WebSite` schema
+- [x] **SEO — Open Graph improvements**
+  - `og:image:width` / `og:image:height` added (1200×630)
+  - `article:published_time` and `article:author` on blog posts
+  - `twitter:site` added
+  - About page now has unique meta description
+- [x] **Performance — font preload** — `<link rel="preload">` for Inter roman WOFF2 in `Seo` component
+- [x] **Performance — text-rendering** — changed from `optimizeLegibility` to `optimizeSpeed`
+- [x] **Performance — hero image** — `loading="eager"` for faster LCP
+- [x] **Bug fix — LinkedIn URL** — `hhttps://` → `https://` in `footer.js`
+- [x] **Bug fix — email typo** — `thelittlescto.com` → `thelittlestcto.com` in footer email link
+- [x] **Security — external links** — `rel="noopener noreferrer"` + `target="_blank"` on all footer external links
+- [x] **Accessibility — SVG icons** — `aria-label` on link, `aria-hidden="true"` + `focusable="false"` on SVGs in footer
+- [x] **Documentation** — fully rewrote README.md, NOTES.md, TASKS.md with architecture diagrams, CI/CD docs, local test instructions
+
+### 2026-02-28 — Hosting migration & Gatsby upgrade
+
+- [x] **Migrated from Netlify → Cloudflare Pages**
+  - Repo transferred from `thelittlestcto` org → `axshaw` personal account
+  - CF Pages project created: `fantastic-octo-goggles`
+  - Build command: `npx gatsby build` (not `gatsby build` — CF Pages PATH issue)
+  - Domain nameservers updated to Cloudflare; propagated same evening
+  - Custom domains `thelittlestcto.com` + `www.thelittlestcto.com` added to CF Pages
+  - SSL auto-provisioned by Cloudflare
+- [x] **GDPR — Removed GA4** (`G-CWS43VLQ2P`) from `layout.js`
+- [x] **GDPR — Removed Microsoft Clarity** (`eulfh7sro3`) — uninstalled `gatsby-plugin-clarity`
+- [x] **Enabled Cloudflare Web Analytics** — cookieless, GDPR compliant, auto-injected
+- [x] **SEO audit** — identified: no sitemap, no canonicals, no JSON-LD, og:image URL issues
 - [x] **Gatsby v4 → v5 upgrade**
-  - [x] Updated: gatsby, gatsby-plugin-image, gatsby-plugin-sharp, gatsby-transformer-sharp, gatsby-source-contentful
-  - [x] Removed: gatsby-plugin-react-helmet, react-helmet, gh-pages, gatsby-provision-contentful, reading-time
-  - [x] Fixed GraphQL sort syntax on all pages (`fields/order` → object syntax)
-  - [x] Replaced `react-helmet` with Gatsby v5 Head API (`export const Head`) on all pages and blog post template
-  - [x] Fixed `og:image` URL protocol (`http:` → `https:`)
-  - [x] Added Twitter handle (`@axshaw`) to SEO component
-  - [x] Added `siteUrl` to `siteMetadata`
-  - [x] Updated Node engine requirement `>=14` → `>=22`
-- [x] **Node 22 throughout** — `.nvmrc`, `netlify.toml`, `package.json` all pinned to 22; Netlify dashboard `NODE_VERSION` env var updated to 22
-- [x] **Rewrote `netlify.toml`** — build command, Node 22, security headers, immutable JS cache headers
-- [x] **Disabled Netlify legacy prerendering** — turned off in Netlify dashboard (redundant for Gatsby v5 static builds)
-- [x] **Confirmed build passing** — Gatsby v5 builds clean on Node 22, all pages generated, deployed to production
-- [x] **Rewrote README.md** — accurate stack, local dev setup, project structure, content model, deployment
-- [x] **Added NOTES.md** — architecture decisions, known issues, analytics GDPR concerns, removed dependencies
-- [x] **Added TASKS.md** — this file
-- [x] Deleted stale `WHATS-NEXT.md`, `app.json`, `static.json`, `screenshot.png` (Contentful starter boilerplate)
+  - GraphQL sort syntax updated across all pages
+  - `react-helmet` → Gatsby v5 Head API (`export const Head`)
+  - `reading-time` → inline word count
+  - `og:image` URL protocol fixed (`http:` → `https:`)
+  - `siteUrl` added to `siteMetadata`
+- [x] **Node 22 throughout** — `.nvmrc`, `package.json` engines, CF Pages `NODE_VERSION` env var
+- [x] **Dev server LAN binding** — `npm run dev` → `http://192.168.42.209:8000`
+- [x] **Cloned repo, configured Contentful credentials** (`.env.development`, `.env.production`)
+- [x] **Rewrote README.md, NOTES.md, added TASKS.md**
+- [x] Deleted stale boilerplate files (`WHATS-NEXT.md`, `app.json`, `static.json`, `screenshot.png`)
