@@ -13,6 +13,27 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        query: `
+          {
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: () => "https://thelittlestcto.com",
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => allPages,
+        serialize: ({ path }) => ({
+          url: path,
+          changefreq: path === '/' ? 'weekly' : 'monthly',
+          priority: path === '/' ? 1.0 : path.startsWith('/blog/') ? 0.8 : 0.6,
+        }),
+      },
+    },
+    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,

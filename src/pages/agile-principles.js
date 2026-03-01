@@ -27,7 +27,7 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
-export const Head = () => <Seo title="Agile Principles" />
+export const Head = () => <Seo title="Agile Principles" canonicalPath="/agile-principles/" />
 
 export const pageQuery = graphql`
 query AgileQuery {

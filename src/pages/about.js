@@ -27,7 +27,7 @@ class PersonIndex extends React.Component {
 
 export default PersonIndex
 
-export const Head = () => <Seo title="About" />
+export const Head = () => <Seo title="About" canonicalPath="/about/" description="Alex Shaw is a CTO with 20+ years of technology leadership experience. Practical insights on engineering leadership." />
 
 export const pageQuery = graphql`
 query PersonIndexQuery {

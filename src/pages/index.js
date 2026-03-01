@@ -28,7 +28,7 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
-export const Head = () => <Seo />
+export const Head = () => <Seo canonicalPath="/" />
 
 export const pageQuery = graphql`
   query HomeQuery {

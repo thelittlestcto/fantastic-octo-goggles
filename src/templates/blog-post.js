@@ -81,7 +81,7 @@ class BlogPostTemplate extends React.Component {
 
 export default BlogPostTemplate
 
-export const Head = ({ data }) => {
+export const Head = ({ data, location }) => {
   const post = data?.contentfulBlogPost
   if (!post) return <Seo />
   const plainTextDescription = post.description?.raw
@@ -92,6 +92,9 @@ export const Head = ({ data }) => {
       title={post.title}
       description={plainTextDescription}
       image={post.heroImage?.resize?.src ? `https:${post.heroImage.resize.src}` : undefined}
+      canonicalPath={location?.pathname}
+      publishDate={post.rawDate}
+      type="article"
     />
   )
 }

@@ -23,7 +23,7 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
-export const Head = () => <Seo title="Blog" />
+export const Head = () => <Seo title="Blog" canonicalPath="/blog/" />
 
 export const pageQuery = graphql`
   query BlogQuery {
