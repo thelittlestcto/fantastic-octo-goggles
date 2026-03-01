@@ -7,7 +7,7 @@ const Hero = ({isWelcome, image, title, content }) => (
       <div className={styles.heroHolder}>
         
           <div className={styles.imageWrapper}>
-            <GatsbyImage alt="" image={image} />
+            <GatsbyImage alt="" image={image} loading="eager" />
         </div>
         <div className={styles.details}> 
         

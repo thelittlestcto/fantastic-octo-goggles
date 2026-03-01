@@ -104,6 +104,15 @@ const Seo = ({
         {JSON.stringify(jsonLd)}
       </script>
 
+      {/* Font preloads for performance */}
+      <link
+        rel="preload"
+        href="/fonts/Inter-roman.var.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+
       {children}
     </>
   )
