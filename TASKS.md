@@ -21,10 +21,10 @@ Work tracker for the site rebuild and improvement project.
 - [ ] Review ConvertKit double opt-in — verify it's enabled in ConvertKit dashboard
 
 ### Performance
-- [ ] Remove `lodash` — only uses `get()`, replace with optional chaining (`?.`)
+- [x] Remove `lodash` — replaced all `get(this, 'props.data...')` with optional chaining (`?.`)
+- [x] Fix `[gatsby-plugin-image] Missing image prop` — null check on `heroImage?.gatsbyImage` in article-preview.js
+- [x] Add default OG image — falls back to Alex's Contentful profile image (1200×630) via static query in Seo component
 - [ ] Investigate Gatsby bundle size — run `gatsby build --verbose` and review chunk sizes
-- [ ] Fix `[gatsby-plugin-image] Missing image prop` warnings (2 occurrences at build time)
-- [ ] Add default OG image for pages without a heroImage
 
 ### Code Quality
 - [ ] Convert class components → function components + hooks (all pages/templates)

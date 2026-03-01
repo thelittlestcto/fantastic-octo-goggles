@@ -17,9 +17,11 @@ const ArticlePreview = ({ posts }) => {
           return (
             <li key={post.slug}>
               <div className={styles.details}>
-                <Link to={`/blog/${post.slug}`} className={styles.link}>
-                  <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
-                </Link>
+                {post.heroImage?.gatsbyImage && (
+                  <Link to={`/blog/${post.slug}`} className={styles.link}>
+                    <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
+                  </Link>
+                )}
                 <span className={styles.subdetails}>
                 <Link to={`/blog/${post.slug}`} className={styles.link}>
                 <h2 className={styles.title}>{post.title}</h2>

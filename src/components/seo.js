@@ -11,7 +11,7 @@ const Seo = ({
   type = 'website',
   children,
 }) => {
-  const { site } = useStaticQuery(
+  const { site, defaultOgImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -19,6 +19,13 @@ const Seo = ({
             title
             description
             siteUrl
+          }
+        }
+        defaultOgImage: contentfulPerson(name: { eq: "Alex" }) {
+          image {
+            resize(width: 1200, height: 630) {
+              src
+            }
           }
         }
       }
@@ -31,6 +38,10 @@ const Seo = ({
   const pageTitle = title ? `${title} | ${defaultTitle}` : defaultTitle
   const canonicalUrl = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl
   const ogType = type === 'article' ? 'article' : 'website'
+  const fallbackImage = defaultOgImage?.image?.resize?.src
+    ? `https:${defaultOgImage.image.resize.src}`
+    : undefined
+  const ogImage = image || fallbackImage
 
   // JSON-LD structured data
   const jsonLd =
@@ -41,7 +52,7 @@ const Seo = ({
           headline: title,
           description: metaDescription,
           url: canonicalUrl,
-          ...(image && { image }),
+          ...(ogImage && { image: ogImage }),
           ...(publishDate && { datePublished: publishDate }),
           ...(modifiedDate && { dateModified: modifiedDate }),
           author: {
@@ -76,9 +87,9 @@ const Seo = ({
       <meta property="og:description" content={metaDescription} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content={defaultTitle} />
-      {image && <meta property="og:image" content={image} />}
-      {image && <meta property="og:image:width" content="1200" />}
-      {image && <meta property="og:image:height" content="630" />}
+      {ogImage && <meta property="og:image" content={ogImage} />}
+      {ogImage && <meta property="og:image:width" content="1200" />}
+      {ogImage && <meta property="og:image:height" content="630" />}
 
       {/* Article-specific OG */}
       {type === 'article' && publishDate && (
@@ -97,7 +108,7 @@ const Seo = ({
       <meta name="twitter:site" content="@axshaw" />
       <meta name="twitter:title" content={title || defaultTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      {image && <meta name="twitter:image" content={image} />}
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
 
       {/* JSON-LD */}
       <script type="application/ld+json">

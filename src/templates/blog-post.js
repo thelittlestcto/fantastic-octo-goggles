@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
@@ -13,26 +12,25 @@ import * as styles from './blog-post.module.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
-    const previous = get(this.props, 'data.previous')
-    const next = get(this.props, 'data.next')
+    const post = this.props.data?.contentfulBlogPost
+    const previous = this.props.data?.previous
+    const next = this.props.data?.next
     const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
     const timeToRead = Math.ceil(plainTextBody.split(/\s+/).length / 200)
 
     const options = {
-      
       renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const { gatsbyImage, description } = node.data.target
-        return (
-           <GatsbyImage
+          const { gatsbyImage, description } = node.data.target
+          return (
+            <GatsbyImage
               image={getImage(gatsbyImage)}
               alt={description}
-           />
-         )
+            />
+          )
         },
       },
-    };
+    }
 
     return (
       <Layout location={this.props.location}>
@@ -42,13 +40,11 @@ class BlogPostTemplate extends React.Component {
           content={post.description}
         />
         <div className={styles.container}>
-         
           <div className={styles.article}>
-           
             <div className={styles.body}>
-                <span className={styles.meta}>
-            {timeToRead} minute read
-          </span>
+              <span className={styles.meta}>
+                {timeToRead} minute read
+              </span>
               {post.body?.raw && renderRichText(post.body, options)}
             </div>
             <Tags tags={post.tags} />
