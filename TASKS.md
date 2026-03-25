@@ -6,7 +6,6 @@ Work tracker for the site rebuild and improvement project.
 
 ## Current Priority
 
-- [ ] **Privacy Policy page** — required for ConvertKit newsletter (email collection = personal data)
 - [ ] **Contentful → CF Pages webhook** — content publishes don't currently trigger rebuilds
 - [ ] **Tighten Lighthouse thresholds** — once scores stabilise post perf fixes, raise Perf ≥0.85 and BP ≥0.90
 - [ ] **Branch protection on `main`** — require PR + passing CI before merge
@@ -16,9 +15,7 @@ Work tracker for the site rebuild and improvement project.
 ## Backlog
 
 ### GDPR & Privacy
-- [ ] Add Privacy Policy page (required for ConvertKit, link from newsletter form and footer)
-- [ ] Add privacy policy link to ConvertKit form embed
-- [ ] Review ConvertKit double opt-in — verify it's enabled in ConvertKit dashboard
+- [ ] Add Privacy Policy page (good practice for general compliance)
 
 ### Performance
 - [x] Remove `lodash` — replaced all `get(this, 'props.data...')` with optional chaining (`?.`)

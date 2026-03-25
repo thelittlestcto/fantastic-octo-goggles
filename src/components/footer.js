@@ -1,9 +1,8 @@
 import React from 'react'
 import Container from './container-footer'
 import * as styles from './footer.module.css'
-import Newsletter from './newsletter'
 
-const Footer = (props) => (
+const Footer = () => (
   <Container as="footer">
     <div className={styles.footer}>
       <div className={styles.footerGrid}>
@@ -64,9 +63,6 @@ const Footer = (props) => (
               </svg>
             </a>
           </div>
-        </div>
-        <div className={styles.footerGridItemBigLinks}>
-          <Newsletter display={props.newsletter || 'on'} />
         </div>
         <div className={styles.footerGridItemBigLinks}>
           <a
