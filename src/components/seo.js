@@ -22,6 +22,10 @@ const Seo = ({
           }
         }
         defaultOgImage: contentfulPerson(name: { eq: "Alex" }) {
+          name
+          title
+          twitter
+          github
           image {
             resize(width: 1200, height: 630) {
               src
@@ -43,6 +47,16 @@ const Seo = ({
     : undefined
   const ogImage = image || fallbackImage
 
+  const personName = defaultOgImage?.name || 'Alex Shaw'
+  const personTitle = defaultOgImage?.title || 'Engineering Leader & CTO'
+  const sameAsLinks = []
+  if (defaultOgImage?.twitter) sameAsLinks.push(defaultOgImage.twitter)
+  if (defaultOgImage?.github) sameAsLinks.push(defaultOgImage.github)
+  if (sameAsLinks.length === 0) {
+    sameAsLinks.push('https://uk.linkedin.com/in/axshaw')
+    sameAsLinks.push('https://twitter.com/axshaw')
+  }
+
   // JSON-LD structured data
   const jsonLd =
     type === 'article'
@@ -57,7 +71,7 @@ const Seo = ({
           ...(modifiedDate && { dateModified: modifiedDate }),
           author: {
             '@type': 'Person',
-            name: 'Alex Shaw',
+            name: personName,
             url: `${siteUrl}/about/`,
           },
           publisher: {
@@ -68,10 +82,22 @@ const Seo = ({
         }
       : {
           '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: defaultTitle,
-          url: siteUrl,
-          description: metaDescription,
+          '@graph': [
+            {
+              '@type': 'WebSite',
+              name: defaultTitle,
+              url: siteUrl,
+              description: metaDescription,
+            },
+            {
+              '@type': 'Person',
+              name: personName,
+              jobTitle: personTitle,
+              url: siteUrl,
+              sameAs: sameAsLinks,
+              ...(ogImage && { image: ogImage }),
+            }
+          ]
         }
 
   return (
@@ -80,6 +106,7 @@ const Seo = ({
       <title>{pageTitle}</title>
       <meta name="description" content={metaDescription} />
       <link rel="canonical" href={canonicalUrl} />
+      <link rel="preconnect" href="https://images.ctfassets.net" />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />

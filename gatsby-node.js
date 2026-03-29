@@ -1,5 +1,36 @@
 const path = require('path')
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      {
+        apply: (compiler) => {
+          compiler.hooks.environment.tap('DisableESLint', () => {
+            compiler.options.plugins = compiler.options.plugins.filter(
+              (plugin) => plugin.constructor.name !== 'ESLintWebpackPlugin'
+            );
+          });
+        },
+      },
+    ],
+  });
+};
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type ContentfulPerson implements Node {
+      title: String
+      twitter: String
+      github: String
+    }
+    type ContentfulBlogPost implements Node {
+      seoDescription: String
+      category: String
+    }
+  `)
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 

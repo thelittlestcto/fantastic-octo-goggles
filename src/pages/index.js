@@ -16,6 +16,7 @@ class RootIndex extends React.Component {
         <Hero
           image={author?.heroImage?.gatsbyImage}
           title={author?.name}
+          subtitle={author?.title}
           content={author?.shortBio}
           isWelcome={true}
         />
@@ -27,7 +28,10 @@ class RootIndex extends React.Component {
 
 export default RootIndex
 
-export const Head = () => <Seo canonicalPath="/" />
+export const Head = ({ data }) => {
+  const [author] = data?.allContentfulPerson?.nodes ?? []
+  return <Seo title={author?.title || "Engineering Leadership"} canonicalPath="/" />
+}
 
 export const pageQuery = graphql`
   query HomeQuery {
@@ -35,11 +39,13 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
+        seoDescription
+        category
         publishDate(formatString: "MMMM Do, YYYY")
         tags
         heroImage {
           gatsbyImage(
-            layout: FULL_WIDTH
+            layout: CONSTRAINED
             placeholder: BLURRED
             width: 424
             height: 212

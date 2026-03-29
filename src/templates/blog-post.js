@@ -47,7 +47,7 @@ class BlogPostTemplate extends React.Component {
               </span>
               {post.body?.raw && renderRichText(post.body, options)}
             </div>
-            <Tags tags={post.tags} />
+            <Tags tags={post.category ? [post.category, ...(post.tags || [])] : post.tags} />
             {(previous || next) && (
               <nav>
                 <ul className={styles.articleNavigation}>
@@ -80,13 +80,15 @@ export default BlogPostTemplate
 export const Head = ({ data, location }) => {
   const post = data?.contentfulBlogPost
   if (!post) return <Seo />
-  const plainTextDescription = post.description?.raw
-    ? documentToPlainTextString(JSON.parse(post.description.raw))
-    : ''
+  
+  const seoDescription = post.seoDescription || (post.description?.raw
+    ? documentToPlainTextString(JSON.parse(post.description.raw)).substring(0, 160)
+    : '')
+
   return (
     <Seo
       title={post.title}
-      description={plainTextDescription}
+      description={seoDescription}
       image={post.heroImage?.resize?.src ? `https:${post.heroImage.resize.src}` : undefined}
       canonicalPath={location?.pathname}
       publishDate={post.rawDate}
@@ -104,6 +106,8 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       slug
       title
+      seoDescription
+      category
       author {
         name
       }

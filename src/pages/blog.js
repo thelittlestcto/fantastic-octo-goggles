@@ -27,11 +27,13 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
+        seoDescription
+        category
         publishDate(formatString: "MMMM Do, YYYY")
         tags
         heroImage {
           gatsbyImage(
-            layout: FULL_WIDTH
+            layout: CONSTRAINED
             placeholder: BLURRED
             width: 424
             height: 212

@@ -13,13 +13,18 @@ const ArticlePreview = ({ posts }) => {
   return (
     <Container>
       <ul className={styles.articleList}>
-        {posts.map((post) => {
+        {posts.map((post, index) => {
           return (
             <li key={post.slug}>
               <div className={styles.details}>
                 {post.heroImage?.gatsbyImage && (
                   <Link to={`/blog/${post.slug}`} className={styles.link}>
-                    <GatsbyImage alt="" image={post.heroImage.gatsbyImage} />
+                    <GatsbyImage 
+                      alt={post.title} 
+                      image={post.heroImage.gatsbyImage} 
+                      loading={index === 0 ? "eager" : "lazy"} 
+                      fetchPriority={index === 0 ? "high" : "auto"} 
+                    />
                   </Link>
                 )}
                 <span className={styles.subdetails}>
@@ -29,7 +34,7 @@ const ArticlePreview = ({ posts }) => {
                   {post.description?.raw && renderRichText(post.description)}
                   <div className={styles.meta}>
                   <small className="meta">{post.publishDate}</small>
-                  <Tags tags={post.tags} />
+                  <Tags tags={post.category ? [post.category, ...(post.tags || [])] : post.tags} />
                   
                 </div>
                 </span>
